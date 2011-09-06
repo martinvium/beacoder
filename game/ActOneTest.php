@@ -45,7 +45,7 @@ class ActOneTest extends GameTestCase
         $qGetOutOfHere = $lStartingBarn->beginQuestToGetOutOfHere();
         $lStartingBarn->aLockedDoor()->forceWith($lStartingBarn->anIronRod());
         $lOutside = $lStartingBarn->walkThroughTheDoor($this->kilorf);
-        $qGetOutOfHere->complete($this->kilorf->getLocation());
+        $qGetOutOfHere->complete();
         
         return $lOutside;
     }
