@@ -67,7 +67,7 @@ class StartingBarn extends BaseLocation
             throw new \Exception('door is locked');
         }
         
-        $outside = new OutsideStartingBarn($this->getGame());
+        $outside = new OutsideStartingBarn($this->getGame(), $this);
         $player->setLocation($outside);
         return $outside;
     }
