@@ -1,6 +1,8 @@
 <?php
 namespace BAC;
 
+use ActOne\Location\StartingBarn;
+
 final class Game
 {
     private $player;
@@ -38,10 +40,10 @@ final class Game
     /**
      * The barn in which you begin your first adventure.
      * 
-     * @return Location\StartingBarn
+     * @return StartingBarn
      */
     public function getStartingLocation()
     {
-        return new Location\StartingBarn();
+        return new StartingBarn($this);
     }
 }

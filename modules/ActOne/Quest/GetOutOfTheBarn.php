@@ -4,28 +4,20 @@ namespace ActOne\Quest;
 use BAC\Game;
 use BAC\BaseQuest;
 use ActOne\Location\StartingBarn;
-use BAC\Location;
 
 class GetOutOfTheBarn extends BaseQuest
 {
     private $startingBarn;
     
-    private $newLocation;
-    
     public function __construct(Game $game, StartingBarn $startingBarn)
     {
-        parent::BaseQuest($game);
+        parent::__construct($game);
         $this->startingBarn = $startingBarn;
-    }
-    
-    public function setNewLocation(Location $loc)
-    {
-        $this->newLocation = $loc;
     }
     
     public function verify()
     {
-        if($this->newLocation && ! $this->newLocation instanceof StartingBarn) {
+        if($this->getPlayerLocation() && ! $this->getPlayerLocation() instanceof StartingBarn) {
             return true;
         } else {
             return false;
@@ -34,6 +26,6 @@ class GetOutOfTheBarn extends BaseQuest
     
     protected function objectivesAsString()
     {
-        return '';
+        return 'you are still in the barn';
     }
 }

@@ -3,5 +3,5 @@ namespace BAC\Trait;
 
 interface Forcible
 {
-    public function force();
+    public function forceWith(HeavyObject $object);
 }

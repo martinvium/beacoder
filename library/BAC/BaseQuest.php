@@ -20,11 +20,19 @@ abstract class BaseQuest implements Quest
     
     public function complete()
     {
-        if($this->verify()) {
-            $this->game->addCompletedQuest();
-        } else {
-            throw new Exception('Quest still missing objectives: ' . $this->objectivesAsString());
+        if(! $this->verify()) {
+            throw new \Exception('Quest still missing objectives: ' . $this->objectivesAsString());
         }
+    }
+    
+    private function getPlayer()
+    {
+        return $this->getGame()->getPlayer();
+    }
+    
+    protected function getPlayerLocation()
+    {
+        return $this->getPlayer()->getLocation();
     }
     
     abstract protected function objectivesAsString();

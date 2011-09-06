@@ -1,7 +1,7 @@
 <?php
 namespace BAC;
 
-abstract class BaseLocation
+abstract class BaseLocation implements Location
 {
     private $game;
     

@@ -28,7 +28,7 @@ final class Profile
     
     public function verify()
     {
-        if(empty($this->getName())) {
+        if(! $this->getName()) {
             return false;
         }
         

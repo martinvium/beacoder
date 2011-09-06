@@ -7,9 +7,12 @@ use ActOne\Quest\FindYourFather;
 use ActOne\Quest\GetOutOfTheBarn;
 use ActOne\Object\LockedDoor;
 use ActOne\Object\IronRod;
+use BAC\Player;
 
 class StartingBarn extends BaseLocation
 {
+    private $lockedDoor;
+    
     /**
      * You are all alone, locked in a dark room. It's a big room and the smell of manueur hangs
      * heavily in the air. You remember now. There where three men. They kicked down the door last
@@ -17,7 +20,7 @@ class StartingBarn extends BaseLocation
      * 
      * But where is dad? Did they take him? Is he here now?!
      * 
-     * @return Quest\FindYourFather
+     * @return FindYourFather
      */
     public function beginQuestToFindYourFather()
     {
@@ -40,7 +43,11 @@ class StartingBarn extends BaseLocation
      */
     public function aLockedDoor()
     {
-        return new LockedDoor();
+        if(! $this->lockedDoor) {
+            $this->lockedDoor = new LockedDoor();
+        }
+        
+        return $this->lockedDoor;
     }
     
     /**
@@ -49,5 +56,19 @@ class StartingBarn extends BaseLocation
     public function anIronRod()
     {
         return new IronRod();
+    }
+    
+    /**
+     * @return OutsideStartingBarn 
+     */
+    public function walkThroughTheDoor(Player $player)
+    {
+        if(! $this->aLockedDoor()->isForced()) {
+            throw new \Exception('door is locked');
+        }
+        
+        $outside = new OutsideStartingBarn($this->getGame());
+        $player->setLocation($outside);
+        return $outside;
     }
 }

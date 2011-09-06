@@ -1,0 +1,21 @@
+    
+    Be-A-Coder
+
+DESCRIPTION
+
+    A "text adventure" played directly in your IDE, reading the story via method hints and 
+    documentation.
+
+    Fill in the blanks in this intriguing story. Each chapter is a test in a TestCase spanning
+    the entire act. Act by calling actions on your Player object, passing in Objects of the world
+    which then in turn returns new locations and objects, for you to combine and inspect in this
+    detailed and mutable world.
+
+REQUIREMENTS
+   
+    * PHP 5.3+
+    * PHPUnit 3.5+
+
+GETTING STARTED
+
+    Open the file "/game/ActOneTest.php" in your IDE. 

@@ -3,7 +3,7 @@ namespace ActOne\Quest;
 
 use BAC\Game;
 use BAC\BaseQuest;
-use BAC\Module\ActOne\Location\StartingBarn;
+use ActOne\Location\StartingBarn;
 
 class FindYourFather extends BaseQuest
 {
@@ -11,7 +11,7 @@ class FindYourFather extends BaseQuest
     
     public function __construct(Game $game, StartingBarn $startingBarn)
     {
-        parent::BaseQuest($game);
+        parent::__construct($game);
         $this->startingBarn = $startingBarn;
     }
     
@@ -27,5 +27,10 @@ class FindYourFather extends BaseQuest
         }
         
         return false;
+    }
+    
+    protected function objectivesAsString()
+    {
+        return 'missing your father';
     }
 }

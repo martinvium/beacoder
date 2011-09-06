@@ -6,6 +6,8 @@ use BAC\Game;
 use BAC\Player;
 use BAC\Profile;
 
+use ActOne\Location\OutsideStartingBarn;
+
 class ActOneTest extends GameTestCase
 {
     /**
@@ -32,14 +34,28 @@ class ActOneTest extends GameTestCase
         $this->game = BAC\Game::NewGame($this->kilorf);
     }
     
-    public function testEscapeBarn()
+    /**
+     * @test
+     */
+    public function chapterOne()
     {
         $lStartingBarn = $this->game->getStartingLocation();
         $this->qFindYourFather = $lStartingBarn->beginQuestToFindYourFather();
+        
         $qGetOutOfHere = $lStartingBarn->beginQuestToGetOutOfHere();
-        $this->kilorf->hit($lStartingBarn->anIronRod(), $lStartingBarn->aLockedDoor());
-        $newLocation = $this->kilorf->move($lStartingBarn->aLockedDoor());
-        $qGetOutOfHere->setNewLocation($newLocation);
-        $qGetOutOfHere->complete();
+        $lStartingBarn->aLockedDoor()->forceWith($lStartingBarn->anIronRod());
+        $lOutside = $lStartingBarn->walkThroughTheDoor($this->kilorf);
+        $qGetOutOfHere->complete($this->kilorf->getLocation());
+        
+        return $lOutside;
+    }
+    
+    /**
+     * @test
+     * @depends escapeTheStartingBarn
+     */
+    public function chapterTwo(OutsideStartingBarn $lOutside)
+    {
+        
     }
 }

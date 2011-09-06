@@ -2,11 +2,15 @@
 namespace BAC;
 
 use BAC\Profile;
+use BAC\Trait\HeavyObject;
+use BAC\Trait\Forcible;
+use BAC\Location;
 
 final class Player
 {
     private $name = '';
     private $profile;
+    private $location;
     
     /**
      * @param string $name
@@ -44,23 +48,27 @@ final class Player
         $this->profile = $profile;
     }
     
-    public function force(HeavyObject $object, Breakable $target)
+    public function setLocation(Location $location)
     {
-        $target->force();
+        $this->location = $location;
     }
     
-    public function move(Destination $target)
+    public function getLocation()
     {
-        return $destination->getDestination();
+        return $this->location;
     }
 
     public function verify()
     {
-        if(empty($this->getName())) {
+        if(! $this->getName()) {
             return false;
         }
         
         if(! $this->profile) {
+            return false;
+        }
+        
+        if(! $this->profile->verify()) {
             return false;
         }
         
