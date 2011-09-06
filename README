@@ -18,4 +18,7 @@ REQUIREMENTS
 
 GETTING STARTED
 
-    Open the file "/game/ActOneTest.php" in your IDE. 
+    1) Open the file "/game/ActOneTest.php" in your IDE. 
+    2) Explore the methods of your location to figure out what to do.
+    3) Fill in the chapter, returning the location required to begin the next chapter.
+    4) Run the test every time you want to check your progress.
